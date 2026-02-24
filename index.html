@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get 7 — Go somewhere, do something</title>
+    <meta name="description" content="The map-first event discovery platform. Find events, create moments, connect with your city.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://get7.world/">
+    <meta property="og:title" content="Get 7 — Go somewhere, do something">
+    <meta property="og:description" content="The map-first event discovery platform. Find events, create moments, connect with your city.">
+    <!-- <meta property="og:image" content="Add your image URL here"> -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://get7.world/">
+    <meta property="twitter:title" content="Get 7 — Go somewhere, do something">
+    <meta property="twitter:description" content="The map-first event discovery platform. Find events, create moments, connect with your city.">
+    <!-- <meta property="twitter:image" content="Add your image URL here"> -->
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="navbar">
+        <nav class="container">
+            <a href="#" class="logo">
+                <svg width="40" height="40" viewBox="0 0 100 100" class="logo-svg" aria-label="Get 7 Logo">
+                    <!-- Armillary Sphere Concept -->
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#FFD700" stroke-width="2" />
+                    <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FFD700" stroke-width="1.5" transform="rotate(45 50 50)" />
+                    <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FFD700" stroke-width="1.5" transform="rotate(-45 50 50)" />
+                    <circle cx="50" cy="50" r="10" fill="#FFD700" opacity="0.2" />
+                    <text x="50" y="65" text-anchor="middle" font-family="DM Sans" font-weight="900" font-size="40" fill="#FFD700">7</text>
+                </svg>
+                <span class="logo-text">Get 7</span>
+            </a>
+            <a href="#waitlist" class="btn btn-gold btn-round">Join Waitlist</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <canvas id="particle-canvas"></canvas>
+            <div class="container hero-content">
+                <h1 class="fade-in">Go somewhere, do something</h1>
+                <p class="fade-in delay-1">The map-first event discovery platform. Find events, create moments, connect with your city — and the world.</p>
+                
+                <form class="waitlist-form fade-in delay-2" id="hero-form">
+                    <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                    <button type="submit" class="btn btn-gold">Join the Waitlist</button>
+                </form>
+                
+                <p class="launch-note fade-in delay-3">🌍 Be first to launch in Madeira — expanding globally</p>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <section id="features" class="container">
+            <div class="section-header">
+                <h2>What is Get 7?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🗺️</div>
+                    <h3>Discover on the Map</h3>
+                    <p>Find every event near you, visually. No more endless scrolling.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">➕</div>
+                    <h3>Create Any Event</h3>
+                    <p>From massive festivals to spontaneous meetups. Anyone can add events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌍</div>
+                    <h3>Built for the World</h3>
+                    <p>Starting in Madeira, scaling globally. Your city, your events.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How It Works</h2>
+                </div>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Open the map</h3>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Discover or create an event</h3>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Go somewhere, do something</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="waitlist" class="container">
+            <div class="newsletter-card">
+                <h2>Be the first to know</h2>
+                <p>Get updates as we build. No spam — just real progress updates from the team.</p>
+                <form class="waitlist-form" id="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                    <button type="submit" class="btn btn-gold">Subscribe</button>
+                </form>
+                <div id="form-message" class="hidden">
+                    <div class="success-content">
+                        <div class="checkmark">✓</div>
+                        <p>🎉 You're on the list! We'll keep you posted.</p>
+                    </div>
+                    <div class="error-content hidden">
+                        <p>Something went wrong — try again!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <svg width="30" height="30" viewBox="0 0 100 100" class="logo-svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#FFD700" stroke-width="2" />
+                    <text x="50" y="65" text-anchor="middle" font-family="DM Sans" font-weight="900" font-size="40" fill="#FFD700">7</text>
+                </svg>
+                <span>Get 7</span>
+            </div>
+            <p>&copy; 2025 Get 7 · <a href="https://get7.world">get7.world</a> · Built in Madeira 🇵🇹</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
