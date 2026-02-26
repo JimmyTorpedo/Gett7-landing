@@ -1,6 +1,6 @@
-# Get 7 — Go somewhere, do something
+# Gett7 — Go somewhere, do something
 
-**Get 7** is a map-first event discovery platform. Find events, create moments, and connect with your city — and the world. 🌍
+**Gett7** is a map-first event discovery platform. Find events, create moments, and connect with your city — and the world. 🌍
 
 ## Features
 
@@ -31,7 +31,7 @@ The forms are configured to work with **Formspree**.
 
 ### 4. Custom Domain
 1. In the Vercel dashboard, go to **Settings > Domains**.
-2. Add `get7.world`.
+2. Add `gett7.world`.
 3. Follow the DNS instructions provided by Vercel.
 
 ## License

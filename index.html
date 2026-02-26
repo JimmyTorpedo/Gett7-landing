@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get 7 — Go somewhere, do something</title>
-    <meta name="description" content="The map-first event discovery platform. Find events, create moments, connect with your city.">
-    
+    <title>Gett7 — Go somewhere, do something</title>
+    <meta name="description"
+        content="The map-first event discovery platform. Find events, create moments, connect with your city.">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://get7.world/">
-    <meta property="og:title" content="Get 7 — Go somewhere, do something">
-    <meta property="og:description" content="The map-first event discovery platform. Find events, create moments, connect with your city.">
+    <meta property="og:url" content="https://gett7.world/">
+    <meta property="og:title" content="Gett7 — Go somewhere, do something">
+    <meta property="og:description"
+        content="The map-first event discovery platform. Find events, create moments, connect with your city.">
     <!-- <meta property="og:image" content="Add your image URL here"> -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://get7.world/">
-    <meta property="twitter:title" content="Get 7 — Go somewhere, do something">
-    <meta property="twitter:description" content="The map-first event discovery platform. Find events, create moments, connect with your city.">
+    <meta property="twitter:url" content="https://gett7.world/">
+    <meta property="twitter:title" content="Gett7 — Go somewhere, do something">
+    <meta property="twitter:description"
+        content="The map-first event discovery platform. Find events, create moments, connect with your city.">
     <!-- <meta property="twitter:image" content="Add your image URL here"> -->
 
     <!-- Favicon -->
@@ -26,50 +30,63 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header id="navbar">
         <nav class="container">
             <a href="#" class="logo">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo-svg" aria-label="Get 7 Logo">
-                    <!-- Armillary Sphere Concept -->
+                <svg width="40" height="40" viewBox="0 0 100 100" class="logo-svg" aria-label="Gett7 Logo">
+                    <!-- Armillary Sphere Concept Refined -->
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#FFD700" stroke-width="2" />
-                    <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FFD700" stroke-width="1.5" transform="rotate(45 50 50)" />
-                    <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FFD700" stroke-width="1.5" transform="rotate(-45 50 50)" />
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.6" />
+                    <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FFD700" stroke-width="1.5"
+                        transform="rotate(45 50 50)" />
+                    <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="#FFD700" stroke-width="1.5"
+                        transform="rotate(-45 50 50)" />
+                    <ellipse cx="50" cy="50" rx="15" ry="45" fill="none" stroke="#FFD700" stroke-width="1"
+                        opacity="0.8" />
                     <circle cx="50" cy="50" r="10" fill="#FFD700" opacity="0.2" />
-                    <text x="50" y="65" text-anchor="middle" font-family="DM Sans" font-weight="900" font-size="40" fill="#FFD700">7</text>
+                    <text x="50" y="65" text-anchor="middle" font-family="DM Sans" font-weight="900" font-size="40"
+                        fill="#FFD700">7</text>
                 </svg>
-                <span class="logo-text">Get 7</span>
+                <span class="logo-text">Gett7</span>
             </a>
-            <a href="#waitlist" class="btn btn-gold btn-round">Join Waitlist</a>
+            <a href="#waitlist" class="btn btn-gold btn-round pulse-btn">Join Waitlist</a>
         </nav>
     </header>
 
     <main>
         <section id="hero">
             <canvas id="particle-canvas"></canvas>
+            <div class="hero-overlay"></div>
             <div class="container hero-content">
-                <h1 class="fade-in">Go somewhere, do something</h1>
-                <p class="fade-in delay-1">The map-first event discovery platform. Find events, create moments, connect with your city — and the world.</p>
-                
+                <h1 class="fade-in glow-text">Go somewhere, do something</h1>
+                <p class="fade-in delay-1">The map-first event discovery platform. Find events, create moments, connect
+                    with your city — and the world.</p>
+
                 <form class="waitlist-form fade-in delay-2" id="hero-form">
                     <input type="email" placeholder="Enter your email" required aria-label="Email address">
                     <button type="submit" class="btn btn-gold">Join the Waitlist</button>
                 </form>
-                
-                <p class="launch-note fade-in delay-3">🌍 Be first to launch in Madeira — expanding globally</p>
+
+                <p class="launch-note fade-in delay-3">🚀 Born in Madeira. Built for the world.</p>
             </div>
             <div class="scroll-indicator">
                 <div class="mouse"></div>
             </div>
         </section>
 
+        <hr class="section-divider">
+
         <section id="features" class="container">
             <div class="section-header">
-                <h2>What is Get 7?</h2>
+                <h2>What is Gett7?</h2>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -89,6 +106,8 @@
                 </div>
             </div>
         </section>
+
+        <hr class="section-divider">
 
         <section id="how-it-works">
             <div class="container">
@@ -111,6 +130,70 @@
                 </div>
             </div>
         </section>
+
+        <hr class="section-divider">
+
+        <section id="why-gett7" class="container">
+            <div class="section-header">
+                <h2>Why Gett7?</h2>
+            </div>
+            <div class="features-grid cards-grid-4">
+                <div class="feature-card why-card">
+                    <div class="icon">🗺️</div>
+                    <h3>Map-First</h3>
+                    <p>Events shown visually on a map, not in endless lists.</p>
+                </div>
+                <div class="feature-card why-card">
+                    <div class="icon">🎉</div>
+                    <h3>Any Event</h3>
+                    <p>From huge festivals to spontaneous meetups, anyone can post.</p>
+                </div>
+                <div class="feature-card why-card">
+                    <div class="icon">🌍</div>
+                    <h3>Global Vision</h3>
+                    <p>Starting in Madeira, built to scale worldwide.</p>
+                </div>
+                <div class="feature-card why-card">
+                    <div class="icon">🔓</div>
+                    <h3>Open & Free</h3>
+                    <p>Free to use, community driven, no paywalls to discover events.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="who-is-it-for" class="container">
+            <div class="section-header">
+                <h2>Who is it for?</h2>
+            </div>
+            <div class="features-grid cards-grid-3">
+                <div class="feature-card profile-card">
+                    <div class="icon">🏡</div>
+                    <h3>Locals</h3>
+                    <p>Find things to do in your city tonight.</p>
+                </div>
+                <div class="feature-card profile-card">
+                    <div class="icon">✈️</div>
+                    <h3>Tourists</h3>
+                    <p>Discover authentic local experiences wherever you travel.</p>
+                </div>
+                <div class="feature-card profile-card">
+                    <div class="icon">🎤</div>
+                    <h3>Organizers</h3>
+                    <p>Promote your event to the right people in the right place.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="coming-soon" class="container text-center">
+            <p class="coming-soon-text">Gett7 is currently in development. Sign up to the waitlist to be the first to
+                try it when we launch in Madeira.</p>
+        </section>
+
+        <hr class="section-divider">
 
         <section id="waitlist" class="container">
             <div class="newsletter-card">
@@ -138,11 +221,12 @@
             <div class="footer-logo">
                 <svg width="30" height="30" viewBox="0 0 100 100" class="logo-svg">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#FFD700" stroke-width="2" />
-                    <text x="50" y="65" text-anchor="middle" font-family="DM Sans" font-weight="900" font-size="40" fill="#FFD700">7</text>
+                    <text x="50" y="65" text-anchor="middle" font-family="DM Sans" font-weight="900" font-size="40"
+                        fill="#FFD700">7</text>
                 </svg>
-                <span>Get 7</span>
+                <span>Gett7</span>
             </div>
-            <p>&copy; 2025 Get 7 · <a href="https://get7.world">get7.world</a> · Built in Madeira 🇵🇹</p>
+            <p>&copy; 2026 Gett7 · <a href="https://gett7.world">gett7.world</a> · Built with ❤️ in Madeira 🇵🇹</p>
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms</a>
@@ -152,4 +236,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

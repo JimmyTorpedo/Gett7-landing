@@ -8,6 +8,7 @@
     --card-bg: rgba(255, 255, 255, 0.05);
     --glass-bg: rgba(0, 8, 20, 0.8);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 * {
@@ -28,7 +29,9 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Playfair Display', serif;
 }
 
@@ -70,11 +73,29 @@ h2 {
 
 .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
 }
 
 .btn-round {
     border-radius: 50px;
+}
+
+.pulse-btn {
+    animation: pulseGold 2s infinite;
+}
+
+@keyframes pulseGold {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
 }
 
 /* Navigation */
@@ -113,7 +134,8 @@ h2 {
 
 /* Hero Section */
 #hero {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 120px 0 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,6 +143,19 @@ h2 {
     position: relative;
     background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
     overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 1;
 }
 
 #particle-canvas {
@@ -135,13 +170,21 @@ h2 {
 .hero-content {
     position: relative;
     z-index: 10;
-    max-width: 800px;
+    max-width: 900px;
+}
+
+.glow-text {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
 }
 
 .hero-content p {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    margin-bottom: 40px;
+    font-size: 1.35rem;
+    color: var(--text-white);
+    opacity: 0.9;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .waitlist-form {
@@ -196,12 +239,33 @@ h2 {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 2px;
-    animation: scroll 2s infinite;
+    animation: scrollBounce 2s infinite;
 }
 
-@keyframes scroll {
-    0% { transform: translate(-50%, 0); opacity: 1; }
-    100% { transform: translate(-50%, 15px); opacity: 0; }
+@keyframes scrollBounce {
+    0% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        height: 8px;
+    }
+
+    20% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        height: 12px;
+    }
+
+    50% {
+        transform: translate(-50%, 15px);
+        opacity: 0;
+        height: 8px;
+    }
+
+    100% {
+        transform: translate(-50%, 15px);
+        opacity: 0;
+        height: 8px;
+    }
 }
 
 /* Features */
@@ -212,6 +276,15 @@ h2 {
 .section-header {
     text-align: center;
     margin-bottom: 60px;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.2), transparent);
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
 }
 
 .features-grid {
@@ -225,13 +298,33 @@ h2 {
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255, 215, 0, 0.1);
-    transition: var(--transition-smooth);
+    transition: var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.02);
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+.feature-card:hover::before {
+    opacity: 1;
 }
 
 .feature-card .icon {
@@ -287,10 +380,51 @@ h2 {
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
-/* Waitlist Section */
-#waitlist {
+/* Waitlist Section & New Sections */
+#why-gett7,
+#who-is-it-for,
+#waitlist,
+#coming-soon {
     padding: 100px 0;
 }
+
+.cards-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.cards-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.why-card .icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.profile-card {
+    text-align: center;
+}
+
+.profile-card .icon {
+    font-size: 3rem;
+}
+
+.coming-soon-text {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+.text-center {
+    text-align: center;
+}
+
 
 .newsletter-card {
     background: linear-gradient(135deg, rgba(10, 77, 166, 0.2), rgba(0, 43, 92, 0.2));
@@ -339,18 +473,22 @@ footer {
     gap: 20px;
 }
 
-.footer-links a, footer p a {
+.footer-links a,
+footer p a {
     color: var(--text-muted);
     text-decoration: none;
     transition: var(--transition-smooth);
 }
 
-.footer-links a:hover, footer p a:hover {
+.footer-links a:hover,
+footer p a:hover {
     color: var(--accent-gold);
 }
 
 /* Utilities & Animations */
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
 
 .fade-in {
     opacity: 0;
@@ -358,9 +496,17 @@ footer {
     animation: fadeIn 0.8s forwards;
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
 
 @keyframes fadeIn {
     to {
@@ -389,14 +535,35 @@ footer {
     .waitlist-form {
         flex-direction: column;
     }
-    
+
     .footer-content {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .steps-container {
         flex-direction: column;
         align-items: center;
+        gap: 60px;
+        /* More breathing room */
+    }
+
+    #features,
+    #how-it-works,
+    #why-gett7,
+    #who-is-it-for,
+    #waitlist,
+    #coming-soon {
+        padding: 80px 0;
+        /* Adjusted padding for mobile */
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        margin-top: 40px;
     }
 }
