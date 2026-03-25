@@ -1,81 +1,174 @@
-// Particle Effect for Hero Background
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
+// =============================================
+// SONAR DOT GENERATOR
+// =============================================
+const sonarDotsContainer = document.getElementById('sonar-dots');
+const heroSection = document.getElementById('hero');
 
-let particles = [];
-const particleCount = 80;
+function createSonarDot() {
+    const dot = document.createElement('div');
+    dot.classList.add('sonar-dot');
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Random position within hero bounds
+    const heroRect = heroSection.getBoundingClientRect();
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    dot.style.left = x + '%';
+    dot.style.top = y + '%';
+
+    // Random animation delay and duration for organic feel
+    const duration = 3 + Math.random() * 3;
+    const delay = Math.random() * 4;
+    dot.style.animationDuration = duration + 's';
+    dot.style.animationDelay = delay + 's';
+
+    sonarDotsContainer.appendChild(dot);
+
+    // Remove dot after its animation completes to avoid DOM bloat
+    setTimeout(() => {
+        dot.remove();
+    }, (duration + delay) * 1000 + 200);
 }
 
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+// Spawn a batch of dots periodically
+function spawnDots() {
+    const count = 4 + Math.floor(Math.random() * 4);
+    for (let i = 0; i < count; i++) {
+        setTimeout(createSonarDot, i * 200);
+    }
+}
 
-class Particle {
-    constructor() {
-        this.reset();
+// Initial spawn + recurring
+spawnDots();
+setInterval(spawnDots, 2500);
+
+
+// =============================================
+// WAITLIST COUNTER
+// =============================================
+const counterEl = document.getElementById('waitlist-counter');
+let count = 247;
+
+setInterval(() => {
+    count += 1;
+    if (counterEl) counterEl.textContent = count;
+}, 45000);
+
+
+// =============================================
+// INTERSECTION OBSERVER — Dividers only
+// =============================================
+
+// Animated dividers (fade in from center)
+const dividers = document.querySelectorAll('.animate-divider');
+const dividerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            dividerObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+dividers.forEach(d => dividerObserver.observe(d));
+
+
+// =============================================
+// CATEGORY PILLS — More popup & selection
+// =============================================
+const moreBtnEl = document.getElementById('pill-more-btn');
+const popupEl = document.getElementById('categories-popup');
+const noEventsEl = document.getElementById('no-events-msg');
+const noEventsCatEl = document.getElementById('no-events-category');
+const dismissBtn = document.getElementById('no-events-dismiss');
+let activeCategory = null;
+
+// Toggle the "More" popup
+if (moreBtnEl && popupEl) {
+    moreBtnEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !popupEl.classList.contains('hidden');
+        popupEl.classList.toggle('hidden');
+        moreBtnEl.setAttribute('aria-expanded', String(!isOpen));
+        moreBtnEl.textContent = isOpen ? 'More +' : 'Less −';
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!popupEl.classList.contains('hidden') &&
+            !popupEl.contains(e.target) &&
+            e.target !== moreBtnEl) {
+            popupEl.classList.add('hidden');
+            moreBtnEl.setAttribute('aria-expanded', 'false');
+            moreBtnEl.textContent = 'More +';
+        }
+    });
+}
+
+// Handle category pill clicks (main + popup pills)
+function selectCategory(pill) {
+    const cat = pill.dataset.category;
+
+    // If clicking same category, deselect it
+    if (activeCategory === cat) {
+        activeCategory = null;
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        if (noEventsEl) noEventsEl.classList.add('hidden');
+        return;
     }
 
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.1;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.1;
-    }
+    // Set active
+    activeCategory = cat;
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
 
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-            this.reset();
+    // Close popup if open
+    if (popupEl) {
+        popupEl.classList.add('hidden');
+        if (moreBtnEl) {
+            moreBtnEl.setAttribute('aria-expanded', 'false');
+            moreBtnEl.textContent = 'More +';
         }
     }
 
-    draw() {
-        ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+    // Show "no events" message (since the app isn't live yet)
+    if (noEventsEl && noEventsCatEl) {
+        noEventsCatEl.textContent = cat;
+        noEventsEl.classList.remove('hidden');
+        // Smooth scroll to message
+        noEventsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 }
 
-function initParticles() {
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-}
+document.querySelectorAll('.pill[data-category]').forEach(pill => {
+    pill.addEventListener('click', () => selectCategory(pill));
+});
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
+// Dismiss button clears category
+if (dismissBtn) {
+    dismissBtn.addEventListener('click', () => {
+        activeCategory = null;
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        if (noEventsEl) noEventsEl.classList.add('hidden');
     });
-    requestAnimationFrame(animate);
 }
 
-initParticles();
-animate();
 
-// Form Handling
+// =============================================
+// FORM HANDLING (Formspree)
+// =============================================
 const forms = [
     document.getElementById('hero-form'),
     document.getElementById('newsletter-form')
 ];
 
 const messageContainer = document.getElementById('form-message');
-const successContent = messageContainer.querySelector('.success-content');
-const errorContent = messageContainer.querySelector('.error-content');
+const successContent = messageContainer ? messageContainer.querySelector('.success-content') : null;
+const errorContent = messageContainer ? messageContainer.querySelector('.error-content') : null;
 
 // IMPORTANT: Replace 'YOUR_FORM_ID' with your real Formspree ID
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqdadyk';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
 forms.forEach(form => {
+    if (!form) return;
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -83,71 +176,69 @@ forms.forEach(form => {
         const email = emailInput.value;
         const submitBtn = form.querySelector('button');
 
-        // Basic Validation
         if (!validateEmail(email)) {
             alert('Please enter a valid email address.');
             return;
         }
 
-        // UI State: Loading
         submitBtn.disabled = true;
         submitBtn.innerText = 'Sending...';
 
         try {
             const response = await fetch(FORMSPREE_ENDPOINT, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: email })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
             });
 
             if (response.ok) {
-                // UI State: Success
                 hideAllForms();
-                messageContainer.classList.remove('hidden');
-                successContent.classList.remove('hidden');
-                errorContent.classList.add('hidden');
+                if (messageContainer) messageContainer.classList.remove('hidden');
+                if (successContent) successContent.classList.remove('hidden');
+                if (errorContent) errorContent.classList.add('hidden');
             } else {
-                throw new Error('Form submission failed');
+                throw new Error('Submission failed');
             }
-        } catch (error) {
-            // UI State: Error
-            messageContainer.classList.remove('hidden');
-            errorContent.classList.remove('hidden');
-            successContent.classList.add('hidden');
+        } catch (err) {
+            if (messageContainer) messageContainer.classList.remove('hidden');
+            if (errorContent) errorContent.classList.remove('hidden');
+            if (successContent) successContent.classList.add('hidden');
             submitBtn.disabled = false;
             submitBtn.innerText = 'Try Again';
-            console.error('Submission error:', error);
+            console.error('Submission error:', err);
         }
     });
 });
 
 function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function hideAllForms() {
     forms.forEach(f => {
+        if (!f) return;
         f.style.display = 'none';
-        // If it's the hero form, we might want to keep the context but hide the inputs
         if (f.id === 'hero-form') {
-            f.closest('.hero-content').querySelector('h1').innerText = 'Thank you for joining!';
+            const h1 = f.closest('.hero-content').querySelector('h1');
+            if (h1) h1.innerHTML = '<span class="h1-line">Thank you</span><span class="h1-line">for joining!</span>';
         }
     });
-
-    // Also hide headings/subtext in the newsletter section if needed
-    const newsletterSection = document.getElementById('waitlist');
-    const header = newsletterSection.querySelector('h2');
-    const subtext = newsletterSection.querySelector('p');
-    if (header) header.style.display = 'none';
-    if (subtext) subtext.style.display = 'none';
+    const waitlistSection = document.getElementById('waitlist');
+    if (waitlistSection) {
+        const h2 = waitlistSection.querySelector('h2');
+        const p = waitlistSection.querySelector('p');
+        if (h2) h2.style.display = 'none';
+        if (p) p.style.display = 'none';
+    }
 }
 
-// Sticky Navbar Scroll Effect
+
+// =============================================
+// STICKY NAVBAR SCROLL EFFECT
+// =============================================
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
+    if (!navbar) return;
     if (window.scrollY > 50) {
         navbar.style.padding = '10px 0';
         navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';

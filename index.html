@@ -41,7 +41,8 @@
     <header id="navbar">
         <nav class="container">
             <a href="#" class="logo">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo-svg" aria-label="Gett7 Logo">
+                <svg width="40" height="40" viewBox="0 0 100 100" class="logo-svg logo-spin-hover"
+                    aria-label="Gett7 Logo">
                     <!-- Armillary Sphere Concept Refined -->
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#FFD700" stroke-width="2" />
                     <circle cx="50" cy="50" r="38" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.6" />
@@ -57,17 +58,41 @@
                 </svg>
                 <span class="logo-text">Gett7</span>
             </a>
-            <a href="#waitlist" class="btn btn-gold btn-round pulse-btn">Join Waitlist</a>
+            <div class="nav-right">
+                <a href="https://www.instagram.com/_gett7_/" target="_blank" rel="noopener noreferrer"
+                    class="nav-instagram" aria-label="Gett7 on Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="#waitlist" class="btn btn-gold btn-round pulse-btn">Join Waitlist</a>
+            </div>
         </nav>
     </header>
 
     <main>
+        <!-- ===== HERO ===== -->
         <section id="hero">
-            <canvas id="particle-canvas"></canvas>
+            <div class="sonar-bg" aria-hidden="true">
+                <div class="sonar-ring sonar-ring-1"></div>
+                <div class="sonar-ring sonar-ring-2"></div>
+                <div class="sonar-ring sonar-ring-3"></div>
+                <div class="sonar-ring sonar-ring-4"></div>
+                <div class="sonar-dots" id="sonar-dots"></div>
+            </div>
             <div class="hero-overlay"></div>
             <div class="container hero-content">
-                <h1 class="fade-in glow-text">Go somewhere, do something</h1>
-                <p class="fade-in delay-1">The map-first event discovery platform. Find events, create moments, connect
+                <h1 class="glow-text">
+                    <span class="h1-line h1-line-1">Go somewhere.</span>
+                    <span class="h1-line h1-line-2">Do something.</span>
+                </h1>
+                <p class="hero-subtitle">No more scrolling endless lists. Gett7 puts every event, party, and festival
+                    exactly where it belongs — on the map.</p>
+                <p class="hero-desc fade-in delay-1">The map-first event discovery platform. Find events, create
+                    moments, connect
                     with your city — and the world.</p>
 
                 <form class="waitlist-form fade-in delay-2" id="hero-form">
@@ -75,6 +100,8 @@
                     <button type="submit" class="btn btn-gold">Join the Waitlist</button>
                 </form>
 
+                <p class="social-proof fade-in delay-3">Join <strong id="waitlist-counter">247</strong> explorers
+                    already on the waitlist</p>
                 <p class="launch-note fade-in delay-3">🚀 Born in Madeira. Built for the world.</p>
             </div>
             <div class="scroll-indicator">
@@ -82,32 +109,116 @@
             </div>
         </section>
 
-        <hr class="section-divider">
+        <!-- ===== PHONE MOCKUP ===== -->
+        <hr class="section-divider animate-divider">
 
-        <section id="features" class="container">
+        <section id="app-preview" class="container">
             <div class="section-header">
-                <h2>What is Gett7?</h2>
+                <h2>See it in action</h2>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="icon">🗺️</div>
-                    <h3>Discover on the Map</h3>
-                    <p>Find every event near you, visually. No more endless scrolling.</p>
+            <div class="phone-wrapper">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="map-bg">
+                            <div class="map-grid"></div>
+                            <!-- Event pins -->
+                            <div class="event-pin" style="top:22%;left:30%">
+                                <div class="pin-dot"></div>
+                                <div class="event-card-mini">
+                                    <span class="ec-icon">🎵</span>
+                                    <div class="ec-info">
+                                        <strong>Jazz Night</strong>
+                                        <span>0.3 km away</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-pin" style="top:50%;left:55%">
+                                <div class="pin-dot"></div>
+                                <div class="event-card-mini">
+                                    <span class="ec-icon">🎉</span>
+                                    <div class="ec-info">
+                                        <strong>Rooftop Party</strong>
+                                        <span>1.1 km away</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-pin" style="top:68%;left:20%">
+                                <div class="pin-dot"></div>
+                                <div class="event-card-mini">
+                                    <span class="ec-icon">🏞️</span>
+                                    <div class="ec-info">
+                                        <strong>Levada Walk</strong>
+                                        <span>2.4 km away</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-pin" style="top:35%;left:68%">
+                                <div class="pin-dot"></div>
+                                <div class="event-card-mini">
+                                    <span class="ec-icon">🍽️</span>
+                                    <div class="ec-info">
+                                        <strong>Food Festival</strong>
+                                        <span>0.7 km away</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="icon">➕</div>
-                    <h3>Create Any Event</h3>
-                    <p>From massive festivals to spontaneous meetups. Anyone can add events.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🌍</div>
-                    <h3>Built for the World</h3>
-                    <p>Starting in Madeira, scaling globally. Your city, your events.</p>
+                <div class="phone-caption">
+                    <h3>Every event, right on the map.</h3>
+                    <p>No lists. No filters. Just open the map and see what's happening around you.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="section-divider">
+        <!-- ===== CATEGORIES ===== -->
+        <hr class="section-divider animate-divider">
+
+        <section id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Explore by Category</h2>
+                </div>
+                <div class="pills-wrapper">
+                    <div class="pills-track" role="list" aria-label="Event categories">
+                        <button class="pill" role="listitem" data-category="Music">🎵 Music</button>
+                        <button class="pill" role="listitem" data-category="Parties">🎉 Parties</button>
+                        <button class="pill" role="listitem" data-category="Cultural">🎭 Cultural</button>
+                        <button class="pill" role="listitem" data-category="Sports">⚽ Sports</button>
+                        <button class="pill" role="listitem" data-category="Food &amp; Drink">🍽️ Food &amp;
+                            Drink</button>
+                        <button class="pill pill-more" id="pill-more-btn" aria-haspopup="true"
+                            aria-expanded="false">More +</button>
+                    </div>
+                    <!-- More categories popup -->
+                    <div class="categories-popup hidden" id="categories-popup" role="dialog"
+                        aria-label="More categories">
+                        <button class="pill popup-pill" data-category="Workshops">📚 Workshops</button>
+                        <button class="pill popup-pill" data-category="Networking">💼 Networking</button>
+                        <button class="pill popup-pill" data-category="Outdoor">🏞️ Outdoor</button>
+                        <button class="pill popup-pill" data-category="Family">👨‍👩‍👧 Family</button>
+                        <button class="pill popup-pill" data-category="Arts &amp; Crafts">🎨 Arts &amp; Crafts</button>
+                        <button class="pill popup-pill" data-category="Other">📌 Other</button>
+                    </div>
+                </div>
+                <!-- No events found message -->
+                <div class="no-events hidden" id="no-events-msg">
+                    <span class="no-events-icon">🔭</span>
+                    <p>No events found in <strong id="no-events-category"></strong> right now.</p>
+                    <p class="no-events-sub">We're just getting started — check back soon or be the first to add one!
+                    </p>
+                    <button class="btn btn-gold" id="no-events-dismiss"
+                        style="margin-top:16px;border-radius:50px;">Clear filter</button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ===== HOW IT WORKS ===== -->
+        <hr class="section-divider animate-divider">
 
         <section id="how-it-works">
             <div class="container">
@@ -131,7 +242,8 @@
             </div>
         </section>
 
-        <hr class="section-divider">
+        <!-- ===== WHY GETT7 ===== -->
+        <hr class="section-divider animate-divider">
 
         <section id="why-gett7" class="container">
             <div class="section-header">
@@ -155,50 +267,53 @@
                 </div>
                 <div class="feature-card why-card">
                     <div class="icon">🔓</div>
-                    <h3>Open & Free</h3>
+                    <h3>Open &amp; Free</h3>
                     <p>Free to use, community driven, no paywalls to discover events.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="section-divider">
+        <!-- ===== WHO IS IT FOR (inline) ===== -->
+        <hr class="section-divider animate-divider">
 
         <section id="who-is-it-for" class="container">
             <div class="section-header">
                 <h2>Who is it for?</h2>
             </div>
-            <div class="features-grid cards-grid-3">
-                <div class="feature-card profile-card">
-                    <div class="icon">🏡</div>
-                    <h3>Locals</h3>
-                    <p>Find things to do in your city tonight.</p>
+            <div class="audience-row">
+                <div class="audience-item">
+                    <span class="audience-icon">🏡</span>
+                    <div class="audience-info">
+                        <strong>Locals</strong>
+                        <p>Find things to do in your city tonight.</p>
+                    </div>
                 </div>
-                <div class="feature-card profile-card">
-                    <div class="icon">✈️</div>
-                    <h3>Tourists</h3>
-                    <p>Discover authentic local experiences wherever you travel.</p>
+                <div class="audience-divider"></div>
+                <div class="audience-item">
+                    <span class="audience-icon">✈️</span>
+                    <div class="audience-info">
+                        <strong>Tourists</strong>
+                        <p>Discover authentic local experiences wherever you travel.</p>
+                    </div>
                 </div>
-                <div class="feature-card profile-card">
-                    <div class="icon">🎤</div>
-                    <h3>Organizers</h3>
-                    <p>Promote your event to the right people in the right place.</p>
+                <div class="audience-divider"></div>
+                <div class="audience-item">
+                    <span class="audience-icon">🎤</span>
+                    <div class="audience-info">
+                        <strong>Organizers</strong>
+                        <p>Promote your event to the right people in the right place.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <hr class="section-divider">
-
-        <section id="coming-soon" class="container text-center">
-            <p class="coming-soon-text">Gett7 is currently in development. Sign up to the waitlist to be the first to
-                try it when we launch in Madeira.</p>
-        </section>
-
-        <hr class="section-divider">
+        <!-- ===== WAITLIST ===== -->
+        <hr class="section-divider animate-divider">
 
         <section id="waitlist" class="container">
             <div class="newsletter-card">
                 <h2>Be the first to know</h2>
-                <p>Get updates as we build. No spam — just real progress updates from the team.</p>
+                <p>Gett7 is in development — launching first in Madeira. Get updates as we build. No spam, ever.</p>
                 <form class="waitlist-form" id="newsletter-form">
                     <input type="email" placeholder="Enter your email" required aria-label="Email address">
                     <button type="submit" class="btn btn-gold">Subscribe</button>
@@ -226,8 +341,23 @@
                 </svg>
                 <span>Gett7</span>
             </div>
-            <p>&copy; 2026 Gett7 · <a href="https://gett7.world">gett7.world</a> · Built with ❤️ in Madeira 🇵🇹</p>
+            <div class="footer-center">
+                <p>&copy; 2026 Gett7 · <a href="https://gett7.world">gett7.world</a> · Built with ❤️ in Madeira 🇵🇹</p>
+                <p class="footer-building">Building in public from Madeira 🌊 — follow the journey <a
+                        href="https://www.instagram.com/_gett7_/" target="_blank" rel="noopener noreferrer">@_gett7_</a>
+                </p>
+            </div>
             <div class="footer-links">
+                <a href="https://www.instagram.com/_gett7_/" target="_blank" rel="noopener noreferrer"
+                    class="footer-instagram" aria-label="Gett7 on Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    @_gett7_
+                </a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms</a>
             </div>
